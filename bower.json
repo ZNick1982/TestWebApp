@@ -1,0 +1,27 @@
+{
+  "name": "test-ecomerse",
+  "description": "test front end project",
+  "main": "index.js",
+  "authors": [
+    "Nikolay Zherdev"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.8",
+    "angular-ui-router": "ui-router#~0.2.15",
+    "bootstrap-css": "~3.3.4",
+    "angular-strap": "~2.3.6",
+    "angular-animate": "~1.4.8",
+    "angular-sanitize": "~1.4.8",
+    "angular-local-storage": "~0.2.3"
+  }
+}
