@@ -23,16 +23,16 @@ var buffer = require('vinyl-buffer');
 
 
 gulp.task('build-partials', function () {
-  return gulp.src('dev/js/**/*.html')
+  return gulp.src('./dev/js/**/*.html')
     .pipe(templateCache({
         transformUrl : function(url) { return 'js/' + url;},
         standalone : true
     }))
-    .pipe(gulp.dest('./dist/js/cache/'));
+    .pipe(gulp.dest('./dev/js/cache/'));
 });
 
 gulp.task('watch-partials', function() {
-    return gulp.watch('./dev/js/**/*.html', ['partials']);
+    return gulp.watch('./dev/js/**/*.html', ['build-partials']);
 });
 
 // Bower
@@ -53,7 +53,7 @@ gulp.task('watch-markup', function() {
 
 
 gulp.task('css', function() {
-    return gulp.src('./bower_components/bootstrap-css/css/bootstrap.min.css').pipe(gulp.dest('./dist/css/'));
+    return gulp.src('./bower_components/**/*.css').pipe(gulp.dest('./dist/css/'));
 });
 
 gulp.task('fonts', function() {
@@ -102,7 +102,7 @@ gulp.task('watchify', ['build-partials', 'watch-partials'], function () {
                 .pipe(sourcemaps.write('./'))
                 .pipe(gulp.dest('./dist/js/'));
     
-            gutil.log('updating...', name);
+            gutil.log('updating...', 'watchify');
             return result;
         });
         b.on('log', gutil.log);

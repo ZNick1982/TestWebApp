@@ -1,0 +1,43 @@
+<div class="row" ng-controller="LoginController as lc">
+    <div class="col-md-4 col-md-offset-4">
+        <div class="alert alert-danger" ng-show="lc.showErrors">
+            <ul ng-messages="loginFrm.inputEmail.$errorVal">
+                <li ng-message="required">Email address is required</li>
+                <li ng-message="emailInvalid">This is not a valid email.</li>
+                <li ng-message="credentials">Invalid Email or password</li>
+                <li ng-message="email">This is not a valid email.</li>
+            </ul>
+            <ul ng-messages="loginFrm.inputPassword.$errorVal">
+                <li ng-message="required">Password is required</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-4 col-md-offset-4">
+        <form name="loginFrm">
+            <h2>Please Log in</h2>
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="email"
+                id="inputEmail" 
+                name="inputEmail" 
+                class="form-control" 
+                placeholder="Email address" 
+                required 
+                autofocus
+                ng-model="lc.email">
+            <br/>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" 
+                id="inputPassword"
+                name="inputPassword" 
+                class="form-control" 
+                placeholder="Password" 
+                required
+                ng-model="lc.password">
+            <br/>
+            
+            <button class="btn btn-lg btn-primary btn-block"
+            ng-click="lc.Login()"
+            type="submit">Login</button>
+        </form>
+    </div>
+</div>
