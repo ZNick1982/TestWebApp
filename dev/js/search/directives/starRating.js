@@ -13,18 +13,11 @@ module.exports = function(){
             link: function (scope, element, attrs) 
             {
                 
-                console.log('star-rating Link()');
-                console.log('scope.rate is:' + scope.rate);
                 var fillCnt = Math.min(Math.max(0, 5 - scope.rate), 5);
                 var emptyCnt = 5 - fillCnt;
                 
                 scope.fillArr = new Array(fillCnt);
-                console.log(fillCnt);
-                
-                
                 scope.emptyArr = new Array(emptyCnt);
-                console.log(emptyCnt);
-                
                 
             }
         };

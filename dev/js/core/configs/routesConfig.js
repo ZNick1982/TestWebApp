@@ -17,7 +17,6 @@ module.exports=['$stateProvider', '$urlRouterProvider',
             templateUrl: 'js/search/html/search.html',
             resolve:{
                 loader: ['ItemsFactory', function(ItemsFactory){
-                    console.log('Called resolve func!!!');
                     return ItemsFactory.Load();
                 }]
             }
