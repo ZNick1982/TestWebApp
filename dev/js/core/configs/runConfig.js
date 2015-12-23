@@ -1,7 +1,7 @@
 'use strict';
 
-module.exports=['$rootScope', '$state', 'AuthService', '$log',   
-    function($rootScope, $state, AuthService, $log){
+module.exports=['$rootScope', '$state', 'AuthService', '$log','$location',   
+    function($rootScope, $state, AuthService, $log, $location){
         $rootScope.$on('$locationChangeSuccess', function(evt) {
             // Halt state change from even starting
         evt.preventDefault();
@@ -10,12 +10,19 @@ module.exports=['$rootScope', '$state', 'AuthService', '$log',
         
         $log.debug('Current User is: ' + user);
         
-        $log.debug('Current state is: ');
-        $log.debug($state.current.name);
+        $log.debug('Current location is: ' + $location.path());
+        
          
-        if(!user)
+        if(!user && $location.path() ==='/search'){
+            $log.debug('Redirect to login');
             $state.go('login');
-        else
-            $state.go('search');            
+        }
+            
+        if(user && ($location.path() ==='/login' || $location.path() ==='/signup'))
+        {
+            $log.debug('Redirect to search');
+            $state.go('search');
+        }
+//                        
       });
 }];
