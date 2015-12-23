@@ -1,0 +1,35 @@
+<div class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" ng-controller="CartPopupController as cp">
+      <div class="modal-header" ng-show="title">
+        <button type="button" class="close" aria-label="Close" ng-click="$hide()"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" ng-bind="title"></h4>
+      </div>
+      <div class="modal-body">
+          <table class="table">
+              <thead>
+                  <tr>
+                      <th></th>
+                      <th>Name</th>
+                      <th>Price</th>
+                      <th>Count</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr ng-repeat="i in cp.cartService.cartItems">
+                      <td><img src="{{i.item.Image+i.item.Name}}" alt="" width="30" height="30"></td>
+                      <td>{{i.item.Name}}</td>
+                      <td>{{i.item.Price | currency: '$ '}}</td>
+                      <td>{{i.count}}</td>
+                  </tr>
+              </tbody>
+              
+          </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" ng-click="cp.cartService.Clear()">Clear cart</button>
+        <button type="button" class="btn btn-default" ng-click="$hide()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

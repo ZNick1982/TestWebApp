@@ -12,6 +12,25 @@
 
         <link rel="stylesheet" href="css/bootstrap-css/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/angular/angular-csp.css">
+        <link rel="stylesheet" href="css/bootstrap-additions/dist/bootstrap-additions.min.css">
+        <style>
+            .modal-backdrop.am-fade {
+                opacity: .5;
+                transition: opacity .15s linear;
+                &.ng-enter {
+                    opacity: 0;
+                    &.ng-enter-active {
+                    opacity: .5;
+                    }
+                }
+                &.ng-leave {
+                    opacity: .5;
+                    &.ng-leave-active {
+                    opacity: 0;
+                    }
+                }
+                }
+        </style>
     </head>
     <body>
         <!--[if lt IE 9]>
@@ -35,16 +54,24 @@
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li data-match-route="/searchpage"><a ui-sref="search">Search page</a></li>
+                            <li data-match-route="/search"><a ui-sref="search">Search page</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right" ng-show="!nc.curUser">
                             <li data-match-route="/signup"><a ui-sref="signup">Sign Up</a></li>
                             <li data-match-route="/login"><a ui-sref="login">Login</a></li>
                         </ul>
+                        
                         <ul class="nav navbar-nav navbar-right" ng-show="nc.curUser">
                             <li><a href="javascript:{}" ng-click="nc.Logout()">Logout</a></li>
                         </ul>
-                        <p class="navbar-text navbar-right" ng-show="nc.curUser">Authorized user: {{nc.curUser}}</p>
+                        <p class="navbar-text navbar-right" ng-show="nc.curUser">
+                            <a href="javascript:{}"
+                                ng-click="nc.showCart()">
+                                Cart: {{nc.cartService.totalCount}} items
+                            </a>
+                            &nbsp;&nbsp;&nbsp;
+                            Authorized user: {{nc.curUser}}
+                        </p>
                     </div><!--/.nav-collapse -->
                 </div><!--/.container-fluid -->
             </nav>

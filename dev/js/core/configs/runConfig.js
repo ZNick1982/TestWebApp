@@ -9,8 +9,13 @@ module.exports=['$rootScope', '$state', 'AuthService', '$log',
         var user = AuthService.GetCurrentUser();
         
         $log.debug('Current User is: ' + user);
+        
+        $log.debug('Current state is: ');
+        $log.debug($state.current.name);
          
-        if(!user && $state.current.name == 'search')
+        if(!user)
             $state.go('login');
+        else
+            $state.go('search');            
       });
 }];

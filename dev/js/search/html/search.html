@@ -1,7 +1,120 @@
 <div class="row">
     <div class="col-md-12">
-        <div class="well">
-            <h3>Filter</h3>
+        <div ng-controller="FilterController as fc">
+            <div>
+                <div ng-form="filterFrm">
+                    <div class="row"> 
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>From</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="mm/dd/yy" 
+                                    bs-datepicker 
+                                    ng-model="fc.filter.fromDt"
+                                    name="fromDt"
+                                    autoclose="true"
+                                    ng-change="fc.ApplyFilter()">
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>To</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="mm/dd/yy" 
+                                    bs-datepicker 
+                                    ng-model="fc.filter.toDt"
+                                    name="toDt"
+                                    autoclose="true"
+                                    ng-change="fc.ApplyFilter()">
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="checkbox">
+                                </br>
+                                <label>
+                                    <input type="checkbox"
+                                    ng-model="fc.filter.inStockOnly"
+                                    ng-change="fc.ApplyFilter()"> In stock only
+                                </label>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Price From</label>
+                                <input type="text" class="form-control" placeholder="$"
+                                ng-model="fc.filter.priceFrom"
+                                ng-change="fc.ApplyFilter()"
+                                >
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Price To</label>
+                                <input type="text" class="form-control" placeholder="$"
+                                ng-model="fc.filter.priceTo"
+                                ng-change="fc.ApplyFilter()">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Color</label>
+                                <select class="form-control" placeholder="Choose color"
+                                ng-model="fc.filter.color"
+                                ng-change="fc.ApplyFilter()"
+                                >
+                                    <option value="">None</option> 
+                                    <option ng-repeat="c in fc.colorList" value="{{c}}">{{c}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" ng-controller="ItemListController as ilc">
+        <hr>
+        <div class="panel panel-default" ng-repeat="item in ilc.itemsFactory.data">
+            <div class="panel-body">
+                <div class="col-md-2">
+                    <img src="{{item.Image + item.Name}} " alt="{{item.Name}}" class="img-responsive">
+                </div>
+                <div class="col-md-10">
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-4"><b>{{item.Name}}</b></div>
+                        <div class="col-md-4">{{item.IssueDate | date: 'shortDate'}}</div>
+                        <div class="col-md-4">{{item.Price | currency: '$ '}}</div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-4">{{item.Color}}</div>
+                        <div class="col-md-4">
+                            <span ng-if="item.InStock" class="glyphicon glyphicon-check text-success"></span>
+                            <span ng-if="!item.InStock" class="glyphicon glyphicon-unchecked"></span>
+                            In stock
+                        </div>
+                        <div class="col-md-4">
+                            <button class="btn btn-primary"
+                                ng-click="ilc.Order(item)">Order</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div star-rating rate="item.Rating"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

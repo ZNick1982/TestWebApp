@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports=['$stateProvider', '$urlRouterProvider',  
+module.exports=['$stateProvider', '$urlRouterProvider', 
     function($stateProvider, $urlRouterProvider){
         
         $stateProvider
@@ -15,6 +15,12 @@ module.exports=['$stateProvider', '$urlRouterProvider',
         .state('search', {
             url: '/search',
             templateUrl: 'js/search/html/search.html',
+            resolve:{
+                loader: ['ItemsFactory', function(ItemsFactory){
+                    console.log('Called resolve func!!!');
+                    return ItemsFactory.Load();
+                }]
+            }
         });
         
         $urlRouterProvider.otherwise("/login");

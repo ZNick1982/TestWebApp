@@ -1,0 +1,16 @@
+template for http://beta.json-generator.com/ json generator;
+
+[
+  {
+    'repeat:100': {
+      Id: '{{index()}}',
+      Name: '{{company()}}',
+      Color: '{{random("Red", "White", "Black", "Blue", "Yellow", "Green")}}',
+      IssueDate: '{{moment(this.date(new Date(2014, 0, 1), new Date())).format()}}',
+      Price: '{{floating(3000, 7000, 2)}}',
+      Rating: '{{integer(0, 5)}}',
+      InStock: '{{bool()}}',
+      Image: 'http://lorempixel.com/150/150/city/'
+    }
+  }
+]
