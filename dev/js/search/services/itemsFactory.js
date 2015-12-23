@@ -47,13 +47,13 @@ module.exports = ['$http', '$log', function($http, $log) {
             }
             
             if(filter.priceFrom){
-                priceValid = item.Price > filter.priceFrom;
+                priceValid = Number(item.Price) > Number(filter.priceFrom);
             }
             if(filter.priceTo){
-                priceValid = item.Price < filter.priceTo;
+                priceValid = Number(item.Price) < Number(filter.priceTo);
             }
             if(filter.priceFrom && filter.priceTo){
-                priceValid = item.Price > filter.priceFrom && item.Price < filter.priceTo;
+                priceValid = Number(item.Price) > Number(filter.priceFrom) && Number(item.Price) < Number(filter.priceTo);
             }
             
             
